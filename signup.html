@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/img/favicon.ico">
+  <title>Flashly | Sign up</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<style>
+
+
+
+@media (min-width: 768px) {
+            .mobile-only {
+                display: none;
+            }
+        }
+  
+
+input[type="checkbox"]:not(:checked) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid black;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  outline: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+
+
+</style>
+<body class="bg-indigo-50">
+<div class="bg-indigo-50 ">
+  <div class="xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center">
+    <div class=" md:hidden sm:mb-8 mb-6 w-1/2">
+           <img src="/img/LogoLong.png" alt="logo">
+        </div>
+        <div class="md:bg-white  md:rounded-lg md:shadow-lg xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
+          <form id="signup-form" action="/signup" method="POST">  
+          <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Create a free account</p>
+            <p tabindex="0" class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Already have one? <a href="/login" class="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none text-indigo-700 underline cursor-pointer"> Log in</a></p>
+            <div id="google-signin-button" class="mt-5 flex justify-center items-center"></div>
+            <div class="w-full flex items-center justify-between py-5">
+                <hr class="w-full bg-black"/>
+                <p class="text-base font-medium leading-4 px-2.5 text-gray-500">OR</p>
+                <hr class="w-full bg-black"/>
+            </div>
+            <div>
+                <label for="email" class="text-sm font-medium leading-none text-gray-800"> Email </label>
+                <input id="email" aria-labelledby="email" type="email" class=" bg-gray-200 rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: lucas@flashly.ai " />
+            </div>
+            <div class="mt-6 w-full">
+                <label for="myInput" class="text-sm font-medium leading-none text-gray-800"> Password </label>
+                <div class="relative flex items-center justify-center">
+                    <input id="myInput" type="password" class=" bg-gray-200 rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                    <div class="absolute right-0 mt-2 mr-3 cursor-pointer" onclick="showPassword()">
+                        <div id="show">
+                          <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg5.svg" alt="eye">
+                        </div>
+                        <div id="hide" class="hidden">
+                          <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg6.svg" alt="eye">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 w-full flex items-center">
+              <input id="remember_me" name="remember_me" type="checkbox" class="bg-transparent h-4 w-4">
+              <label for="remember_me" class="text-sm font-medium leading-none text-gray-800 ml-2">Remember me</label>
+            </div>
+            
+            
+            <div class="mt-6">
+              <button type="submit" role="button" class="bounce-button focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white shadow-lg focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Create my account</button>
+            </div>
+        </div>
+        <div class="mobile-only">
+          <h1 class="text-2xl leading-6  text-gray-800 dark:text-white  py-5 text-center px-4">Create a free account now..</h1>
+          <h2 class="md:text-4xl text-2xl font-semibold px-4 leading-10 text-indigo-700 dark:text-white  text-center">and join 1,000+ happy users!</h2>
+          <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:px-20 px-10 py-10 gap-6">
+              <div>
+                  <div class="group w-full bg-white dark:bg-gray-800  relative flex flex-col items-center hover:bg-indigo-700 cursor-pointer shadow-md md:p-12 p-6">
+                      <div class="text-gray-600 dark:text-gray-200   group-hover:text-white flex flex-col items-center">
+                          <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0)">
+                                  <path d="M25.2578 14.3309H19.2969C19.3988 9.55819 20.6309 9.01642 22.1785 8.86178L22.7753 8.78051V3.53242L22.0874 3.57292C20.0666 3.69783 17.8323 4.09805 16.3417 6.11965C15.035 7.89183 14.459 10.7871 14.459 15.2316V23.4673H25.2578V14.3309Z" fill="currentColor" />
+                                  <path d="M11.48 23.4673V14.3309H5.59859C5.70049 9.55819 6.89283 9.01642 8.44042 8.86178L8.99749 8.78051V3.53242L8.34931 3.57292C6.32844 3.69783 4.07421 4.09805 2.5836 6.11965C1.27707 7.89183 0.681147 10.7871 0.681147 15.2316V23.4673H11.48Z" fill="currentColor" />
+                              </g>
+                              <defs>
+                                  <clipPath id="clip0">
+                                      <rect width="24.5767" height="27" fill="white" transform="translate(25.2578 27) rotate(-180)" />
+                                  </clipPath>
+                              </defs>
+                          </svg>
+                          <p class="xl:w-80 text-base leading-normal text-center mt-4">When our designs need an expert opinion or approval, I know I can rely on your agency Thank you for all your help-I will be recommending you to everyone</p>
+                      </div>
+                      <div class="text-white dark:text-gray-800 group-hover:text-indigo-700 absolute bottom-0 -mb-6">
+                          <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g filter="url(#filter0_dd)">
+                                  <path d="M17 19L28.2583 3.25H5.74167L17 19Z" fill="currentColor" />
+                              </g>
+                              <defs>
+                                  <filter id="filter0_dd" x="0.741699" y="0.25" width="32.5167" height="27.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow" />
+                                      <feOffset dy="4" />
+                                      <feGaussianBlur stdDeviation="3" />
+                                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                      <feOffset dy="2" />
+                                      <feGaussianBlur stdDeviation="2.5" />
+                                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                      <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+                                      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                                  </filter>
+                              </defs>
+                          </svg>
+                      </div>
+                  </div>
+                  <div class="flex flex-col items-center justify-center mt-10">
+                      <img src="https://i.ibb.co/ZgF5Zzz/avatar-1.png" alt="profile pictre" class="w-12 h-12" />
+                      <p class="text-base font-semibold leading-4 my-2 text-gray-800 dark:text-white  ">Tom Koch</p>
+                      <p class="text-base leading-4 text-center text-indigo-700 dark:text-gray-200  ">Developer</p>
+                  </div>
+              </div>
+              <div>
+                  <div class="group w-full bg-white dark:bg-gray-800  relative flex flex-col items-center hover:bg-indigo-700 cursor-pointer shadow-md md:p-12 p-6">
+                      <div class="text-gray-600 dark:text-gray-200   group-hover:text-white flex flex-col items-center">
+                          <svg class="" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0)">
+                                  <path d="M25.2578 14.3309H19.2969C19.3988 9.55819 20.6309 9.01642 22.1785 8.86178L22.7753 8.78051V3.53242L22.0874 3.57292C20.0666 3.69783 17.8323 4.09805 16.3417 6.11965C15.035 7.89183 14.459 10.7871 14.459 15.2316V23.4673H25.2578V14.3309Z" fill="currentColor" />
+                                  <path d="M11.48 23.4673V14.3309H5.59859C5.70049 9.55819 6.89283 9.01642 8.44042 8.86178L8.99749 8.78051V3.53242L8.34931 3.57292C6.32844 3.69783 4.07421 4.09805 2.5836 6.11965C1.27707 7.89183 0.681147 10.7871 0.681147 15.2316V23.4673H11.48Z" fill="currentColor" />
+                              </g>
+                              <defs>
+                                  <clipPath id="clip0">
+                                      <rect width="24.5767" height="27" fill="white" transform="translate(25.2578 27) rotate(-180)" />
+                                  </clipPath>
+                              </defs>
+                          </svg>
+                          <p class="xl:w-80 text-base leading-normal text-center mt-4">When our designs need an expert opinion or approval, I know I can rely on your agency Thank you for all your help-I will be recommending you to everyone</p>
+                      </div>
+                      <div class="text-white dark:text-gray-800 group-hover:text-indigo-700 absolute bottom-0 -mb-6">
+                          <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g filter="url(#filter0_dd)">
+                                  <path d="M17 19L28.2583 3.25H5.74167L17 19Z" fill="currentColor" />
+                              </g>
+                              <defs>
+                                  <filter id="filter0_dd" x="0.741699" y="0.25" width="32.5167" height="27.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow" />
+                                      <feOffset dy="4" />
+                                      <feGaussianBlur stdDeviation="3" />
+                                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                      <feOffset dy="2" />
+                                      <feGaussianBlur stdDeviation="2.5" />
+                                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                      <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+                                      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                                  </filter>
+                              </defs>
+                          </svg>
+                      </div>
+                  </div>
+                  <div class="flex flex-col items-center justify-center mt-10">
+                      <img src="https://i.ibb.co/8BLjmqz/avatar-2.png" alt="profile pictre" class="w-12 h-12" />
+                      <p class="text-base font-semibold leading-4 my-2 text-gray-800 dark:text-white  ">Alan Max</p>
+                      <p class="text-base leading-4 text-center text-indigo-700 dark:text-gray-200  ">Designer</p>
+                  </div>
+              </div>
+              <div>
+                  <div class="group w-full bg-white dark:bg-gray-800  relative flex flex-col items-center hover:bg-indigo-700 cursor-pointer shadow-md md:p-12 p-6">
+                      <div class="text-gray-600 dark:text-gray-200   group-hover:text-white flex flex-col items-center">
+                          <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0)">
+                                  <path d="M25.2578 14.3309H19.2969C19.3988 9.55819 20.6309 9.01642 22.1785 8.86178L22.7753 8.78051V3.53242L22.0874 3.57292C20.0666 3.69783 17.8323 4.09805 16.3417 6.11965C15.035 7.89183 14.459 10.7871 14.459 15.2316V23.4673H25.2578V14.3309Z" fill="currentColor" />
+                                  <path d="M11.48 23.4673V14.3309H5.59859C5.70049 9.55819 6.89283 9.01642 8.44042 8.86178L8.99749 8.78051V3.53242L8.34931 3.57292C6.32844 3.69783 4.07421 4.09805 2.5836 6.11965C1.27707 7.89183 0.681147 10.7871 0.681147 15.2316V23.4673H11.48Z" fill="currentColor" />
+                              </g>
+                              <defs>
+                                  <clipPath id="clip0">
+                                      <rect width="24.5767" height="27" fill="white" transform="translate(25.2578 27) rotate(-180)" />
+                                  </clipPath>
+                              </defs>
+                          </svg>
+                          <p class="xl:w-80 text-base leading-normal text-center mt-4">When our designs need an expert opinion or approval, I know I can rely on your agency Thank you for all your help-I will be recommending you to everyone</p>
+                      </div>
+                      <div class="text-white dark:text-gray-800 group-hover:text-indigo-700 absolute bottom-0 -mb-6">
+                          <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g filter="url(#filter0_dd)">
+                                  <path d="M17 19L28.2583 3.25H5.74167L17 19Z" fill="currentColor" />
+                              </g>
+                              <defs>
+                                  <filter id="filter0_dd" x="0.741699" y="0.25" width="32.5167" height="27.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                      <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow" />
+                                      <feOffset dy="4" />
+                                      <feGaussianBlur stdDeviation="3" />
+                                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                      <feOffset dy="2" />
+                                      <feGaussianBlur stdDeviation="2.5" />
+                                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                      <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+                                      <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                                  </filter>
+                              </defs>
+                          </svg>
+                      </div>
+                  </div>
+                  <div class="flex flex-col items-center justify-center mt-10">
+                      <img src="https://i.ibb.co/y0KCX7p/avatar-3.png" alt="profile pictre" class="w-12 h-12" />
+                      <p class="text-base font-semibold leading-4 my-2 text-gray-800 dark:text-white  ">Kera Joo</p>
+                      <p class="text-base leading-4 text-center text-indigo-700 dark:text-gray-200  ">Support</p>
+                  </div>
+              </div>
+            
+          </div>
+      </div>
+        <div class="xl:w-1/3 md:w-1/2 lg:ml-16 ml-8 md:mt-0 mt-6 hidden md:block">
+          
+          <div class="pl-8 md:block hidden w-60 h-auto">
+            <img src="/img/LogoLong.png" alt="logo">            </div>
+            
+            <div class="flex items-start mt-8">
+                <div>
+                   <img class="w-24" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg7.svg" alt="quote">
+                </div>
+                <p class="sm:text-2xl text-xl leading-7 text-black pl-2.5">Generating random paragraphs can be an excellent way for writers to get their creative flow going at the beginning of the day. The writer has no idea what topic the random paragraph will be about when it appears</p>
+            </div>
+            <div class="flex items-center pl-8 mt-10">
+                <div class="w-8 h-8">
+                    <img src="https://i.ibb.co/xLtZCRT/Mask-Group.png" alt="profile picture" class="w-full h-full" />
+                </div>
+                <div class="ml-2">
+                    <p class="text-sm font-medium leading-none text-gray-800">Anita Jane</p>
+                </div>
+            </div>
+    </div>
+</div>
+  </div>
+  
+  
+                  <script>
+                      const form = document.getElementById('signup-form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = form.email.value;
+  const password = form.myInput.value;
+  const rememberMe = form.remember_me.checked;
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password, remember_me: rememberMe }),
+      credentials: 'include', 
+    });
+
+    
+  if (response.ok) {
+    window.location.href = '/'; // Redirect to the home page
+  } else {
+    const error = await response.json();
+    alert(`Error: ${error.error}`);
+  }
+} catch (error) {
+  console.error(error);
+  alert('Error: ' + error.message);
+}
+});
+    </script>
+<script>
+  function showPassword() {
+var passwordType = document.getElementById("myInput");
+var show = document.getElementById("show");
+var hide = document.getElementById("hide");
+if (passwordType.type === "password") {
+passwordType.type = "text";
+hide.classList.remove("hidden");
+show.classList.add("hidden");
+} else {
+passwordType.type = "password";
+hide.classList.add("hidden");
+show.classList.remove("hidden");
+}
+}
+
+
+
+const CLIENT_ID = '1057177145166-j7v54iuqu04vp7011a63seb0diu4ccur.apps.googleusercontent.com';
+window.onload = function() {
+  google.accounts.id.initialize({
+    client_id: '1057177145166-j7v54iuqu04vp7011a63seb0diu4ccur.apps.googleusercontent.com',
+    callback: handleCredentialResponse,
+    cancel_on_tap_outside: false
+  });
+  google.accounts.id.renderButton(
+    document.getElementById('google-signin-button'),
+    { logo_alignment: 'center', width: '350', size:'large', shape: 'rectangular' }
+  );
+};
+
+function handleCredentialResponse(response) {
+  console.log(response);
+  const idToken = response.credential;
+  const rememberMe = document.getElementById('remember_me').checked; // Get the value of remember_me checkbox
+
+  console.log('User Email:', response.email);
+  console.log('User ID:', response.id);
+
+  // Send the ID token and rememberMe value to your server for verification and user authentication
+  fetch('/login-with-google', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id_token: idToken, remember_me: rememberMe }), // Include id_token value
+  })
+    .then(response => {
+      if (response.ok) {
+        // Redirect the user to the desired page after successful login
+        window.location.href = '/study';
+      } else {
+        // Handle the error if the server-side authentication fails
+        console.error('Login with Google failed.');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred during the login process.', error);
+    });
+}
+</script>
+
+  </body>
+</html>
+
+       

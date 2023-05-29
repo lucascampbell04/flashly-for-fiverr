@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/img/favicon.ico">
+  <title>Flashly | Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" crossorigin="anonymous"></script>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body class="bg-indigo-50">
+  <div id="resetPasswordForm" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-50 flex items-center justify-center backgroundmodal hidden">
+      <div class="relative w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" id="closeResetModal" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Reset password</h3>
+                <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" id="resetPassword" onsubmit="sendForm()">
+                  <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                    <input type="text" name="email" id="email" placeholder="johndoe@gmail.com" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div><div>
+                    <label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current password</label>
+                    <input type="password" name="currentPassword" id="currentPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div>
+                  <div>
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
+                    <input type="password" name="newPassword" id="newPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div>
+                  <div>
+                    <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div>
+                  <input type="hidden" name="resetPasswordToken" id="resetPasswordToken" value="{{ resetPasswordToken }}">
+                  <button id="resetSubmit" type="submit" class="w-full text-white bg-indigo-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save changes</button>
+                  <div id="spinner" class="flex justify-center m-auto left-1/2 top-1/2 spinner w-6 h-6 border-t-4 border-purple-500 rounded-full animate-spin hidden"></div>
+                </form>
+        </div>
+    </div>
+  </div>
+</div>
+  <div class="bg-indigo-50">
+    <div class="xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center">
+        <div class=" md:hidden sm:mb-8 mb-6">
+           <a href="/"><img src="https://i.imgur.com/DSnVu3E.png" class="w-1/2" alt="logo"></a>
+        </div>
+        <div class="md:bg-white md:shadow-lg rounded xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
+          <form id="login-form" action="/login" method="POST">  
+          <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Login to your account</p>
+          <p tabindex="0" class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Don't have one? <a href="/signup" class="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none text-indigo-700 underline cursor-pointer"> Start for free</a></p>
+          <div id="google-signin-button" class="mt-5 flex justify-center items-center"></div>
+            <div class="w-full flex items-center justify-between py-5">
+                <hr class="w-full bg-gray-400" />
+                <p class="text-base font-medium leading-4 px-2.5 text-gray-500">OR</p>
+                <hr class="w-full bg-gray-400" />
+            </div>
+            <div>
+                <label for="email" class="text-sm font-medium leading-none text-gray-800"> Email </label>
+                <input id="email" aria-labelledby="email" type="email" class="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: lucas@flashly.ai" />
+            </div>
+            <div class="mt-6 w-full">
+                <label for="myInput" class="text-sm font-medium leading-none text-gray-800"> Password </label>
+                <div class="relative flex items-center justify-center">
+                    <input id="myInput" type="password" class="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                    <div class="absolute right-0 mt-2 mr-3 cursor-pointer" onclick="showPassword()">
+                        <div id="show">
+                          <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg5.svg" alt="eye">
+                        </div>
+                        <div id="hide" class="hidden">
+                          <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg6.svg" alt="eye">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 w-full flex items-center justify-between">
+              <div class="flex items-center">
+                <input id="remember_me" name="remember_me" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-700">
+                <label for="remember_me" class="text-sm font-medium leading-none text-gray-800 ml-2">Remember me</label>
+              </div>
+              <a onclick="document.getElementById('resetPasswordForm').classList.remove('hidden');" class="text-sm font-medium leading-none text-indigo-700 hover:underline cursor-pointer">Forgot password?</a>
+            </div>            
+            <div class="mt-6">
+              <button type="submit" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Log in</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    
+                    <script>
+                      const form = document.getElementById('login-form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = form.email.value;
+  const password = form.myInput.value;
+  const rememberMe = form.remember_me.checked;
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password, remember_me: rememberMe }),
+      credentials: 'include', 
+    });
+
+    
+  if (response.ok) {
+    window.location.href = '/study'; // Redirect to the home page
+  } else {
+    const error = await response.json();
+    alert(`Error: ${error.error}`);
+  }
+} catch (error) {
+  console.error(error);
+  alert('Error: ' + error.message);
+}
+});
+
+document.getElementById('closeResetModal').addEventListener('click', function() {
+  document.getElementById('resetPasswordForm').classList.add('hidden');
+});
+                    </script>
+                    <script>
+                      function showPassword() {
+    var passwordType = document.getElementById("myInput");
+    var show = document.getElementById("show");
+    var hide = document.getElementById("hide");
+    if (passwordType.type === "password") {
+        passwordType.type = "text";
+        hide.classList.remove("hidden");
+        show.classList.add("hidden");
+    } else {
+        passwordType.type = "password";
+        hide.classList.add("hidden");
+        show.classList.remove("hidden");
+    }
+}
+                    </script>
+        </div>
+      </div>
+      <script>
+        const logoutButton = document.querySelector('#logout-btn');
+        if (logoutButton) {
+          logoutButton.addEventListener('click', async function() {
+            try {
+              const response = await fetch('/logout', {
+                method: 'GET',
+                credentials: 'include'
+              });
+              const data = await response.json();
+              console.log(data.message); // Log the server response message
+              window.location.href = '/login'; // Redirect the user to the login page
+            } catch (error) {
+              console.error(error);
+            }
+          });
+        }
+
+const CLIENT_ID = '1057177145166-j7v54iuqu04vp7011a63seb0diu4ccur.apps.googleusercontent.com';
+window.onload = function() {
+  google.accounts.id.initialize({
+    client_id: '1057177145166-j7v54iuqu04vp7011a63seb0diu4ccur.apps.googleusercontent.com',
+    callback: handleCredentialResponse,
+    cancel_on_tap_outside: false
+  });
+  google.accounts.id.renderButton(
+    document.getElementById('google-signin-button'),
+    { logo_alignment: 'center', width: '350', size:'large', shape: 'rectangular' }
+  );
+};
+
+function handleCredentialResponse(response) {
+  console.log(response);
+  const idToken = response.credential;
+  const rememberMe = document.getElementById('remember_me').checked; // Get the value of remember_me checkbox
+
+  console.log('User Email:', response.email);
+  console.log('User ID:', response.id);
+
+  // Send the ID token and rememberMe value to your server for verification and user authentication
+  fetch('/login-with-google', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id_token: idToken, remember_me: rememberMe }), // Include id_token value
+  })
+    .then(response => {
+      if (response.ok) {
+        // Redirect the user to the desired page after successful login
+        window.location.href = '/study';
+      } else {
+        // Handle the error if the server-side authentication fails
+        console.error('Login with Google failed.');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred during the login process.', error);
+    });
+}
+
+async function sendForm() {
+  const email = document.getElementById('email').value;
+  const currentPassword = document.getElementById('currentPassword').value;
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const button = document.getElementById('resetSubmit');
+  const spinner = document.getElementById('spinner');
+  
+  button.classList.add('hidden');
+  spinner.classList.remove('hidden');
+
+  try {
+    // Fetch the user ID
+    const userIdResponse = await fetch(`/get-user-id`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    const { userId } = await userIdResponse.json();
+    
+    const body = JSON.stringify({ email, currentPassword, newPassword, confirmPassword, userId });
+
+    console.log("calling route reset password");
+    
+    const response = await fetch(`/reset-password-by-email`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body
+    });
+
+    if (response.ok) {
+      document.querySelector('form').reset();
+      button.classList.remove('hidden');
+      spinner.classList.add('hidden');
+      showSuccess();
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+    } else {
+      // Handle error
+      const errorData = await response.json();
+      errorMessage = errorData.error;
+      showError(errorMessage);
+      document.querySelector('form').reset();
+      button.classList.remove('hidden');
+      spinner.classList.add('hidden');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+        var formLogin = document.getElementById("resetPassword");
+        function submitForm(event) {
+           event.preventDefault();
+        }
+        formLogin.addEventListener('submit', submitForm);
+
+        function showError(errorMessage)  {
+          const warningAlert = document.createElement("div");
+  warningAlert.classList.add("flex", "p-4", "m-12", "text-sm", "text-red-800", "rounded-lg", "bg-red-100", "fixed", "bottom-0", "border", "border-red-200", "right-0", "opacity-0", "transition", "duration-300", "slide-up");
+  warningAlert.setAttribute("role", "alert");
+  warningAlert.innerHTML = `
+    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+    </svg>
+    <span class="font-medium">${errorMessage}</span>
+  `;
+  document.body.appendChild(warningAlert);
+  // Trigger a reflow to enable transition
+  warningAlert.offsetHeight;
+  warningAlert.classList.add("opacity-100");
+
+  setTimeout(() => {
+    warningAlert.style.opacity = '0';
+    setTimeout(() => {
+      warningAlert.remove();
+    }, 500); // Wait for transition to finish before removing element
+  }, 3000);
+          }
+
+          function showSuccess()  {
+            const warningAlert = document.createElement("div");
+    warningAlert.classList.add("flex", "p-4", "m-12", "text-sm", "text-green-800", "rounded-lg", "bg-green-100", "fixed", "bottom-0", "border", "border-green-200", "right-0", "opacity-0", "transition", "duration-300", "slide-up");
+    warningAlert.setAttribute("role", "alert");
+    warningAlert.innerHTML = `
+      <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+      </svg>
+      <span class="font-medium">Password reset successfully!</span>
+    `;
+    document.body.appendChild(warningAlert);
+    // Trigger a reflow to enable transition
+    warningAlert.offsetHeight;
+    warningAlert.classList.add("opacity-100");
+  
+    setTimeout(() => {
+      warningAlert.style.opacity = '0';
+      setTimeout(() => {
+        warningAlert.remove();
+      }, 500); // Wait for transition to finish before removing element
+    }, 3000);
+            }
+
+      </script>
+
+      
+      </body>
+</html>

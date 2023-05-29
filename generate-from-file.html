@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial | Generate from file</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+<link rel="icon" href="/img/favicon.ico">
+<script src="https://unpkg.com/typewriter-effect@2.17.0/dist/core.js"></script>
+<style>
+
+.sub-buttons {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.sub-buttons.show {
+  max-height: 200px; /* Adjust the height as needed */
+  transition: max-height 0.3s ease;
+}
+
+               .svg-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: currentColor;
+}
+
+.svg-icon circle {
+  stroke: currentColor;
+  stroke-width: 1;
+} 
+</style>
+</head>
+<body class="bg-white">
+    <div id="modal" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-40 flex items-center justify-center hidden">
+        <div class="relative bg-white max-w-2/3 p-10 mx-auto text-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">
+          <div class="flex items-center">
+            <div class="inline-flex items-center justify-center flex-shrink-0 w-12 h-12 text-indigo-200 bg-indigo-200 rounded-lg dark:bg-green-800 dark:text-green-200">
+              <svg aria-hidden="true" class="w-6 h-6" fill="rgb(67 56 202)" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span class="sr-only">Checkmark icon</span>
+            </div>
+            <div class="ml-6 text-lg font-normal">Your password has been reset.</div>
+          </div>
+          <div class="mt-6 flex space-x-6 justify-center">
+            <button id="closeModal" type="button" class="focus:outline-none text-indigo-700 border border-indigo-700 bg-white hover:text-white hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-900">Close</button>
+          </div>
+        </div>
+      </div>
+      <div id="Main" class="bg-indigo-700 transform xl:translate-x-0 shadow   sm:fixed overflow-y-auto  top-0 sm:z-20 bg-white ease-in-out transition duration-500 flex justify-between items-start w-full sm:w-64 flex-col h-full">
+        <div class="md:w-auto w-full">
+          <button class=" focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-center items-center p-6 w-7/12">
+            <img src="../img/LogoInverse.png" onclick="window.location.href='/';"  class="w-full mx-auto" alt="logo" />
+          </button>
+          <hr class="bg-gray-50 opacity-20 w-3/4 mx-auto mb-2">
+  
+          <div class="flex flex-col px-6 justify-start items-center px-4 w-full">
+  
+            <button onclick="window.location.href='/generate'" class="focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center w-full space-x-6">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path d="M6.176,7.241V6.78c0-0.221-0.181-0.402-0.402-0.402c-0.221,0-0.403,0.181-0.403,0.402v0.461C4.79,7.416,4.365,7.955,4.365,8.591c0,0.636,0.424,1.175,1.006,1.35v3.278c0,0.222,0.182,0.402,0.403,0.402c0.222,0,0.402-0.181,0.402-0.402V9.941c0.582-0.175,1.006-0.714,1.006-1.35C7.183,7.955,6.758,7.416,6.176,7.241 M5.774,9.195c-0.332,0-0.604-0.272-0.604-0.604c0-0.332,0.272-0.604,0.604-0.604c0.332,0,0.604,0.272,0.604,0.604C6.377,8.923,6.105,9.195,5.774,9.195 M10.402,10.058V6.78c0-0.221-0.181-0.402-0.402-0.402c-0.222,0-0.402,0.181-0.402,0.402v3.278c-0.582,0.175-1.006,0.714-1.006,1.35c0,0.637,0.424,1.175,1.006,1.351v0.461c0,0.222,0.181,0.402,0.402,0.402c0.221,0,0.402-0.181,0.402-0.402v-0.461c0.582-0.176,1.006-0.714,1.006-1.351C11.408,10.772,10.984,10.233,10.402,10.058M10,12.013c-0.333,0-0.604-0.272-0.604-0.604S9.667,10.805,10,10.805c0.332,0,0.604,0.271,0.604,0.604S10.332,12.013,10,12.013M14.629,8.448V6.78c0-0.221-0.182-0.402-0.403-0.402c-0.221,0-0.402,0.181-0.402,0.402v1.668c-0.581,0.175-1.006,0.714-1.006,1.35c0,0.636,0.425,1.176,1.006,1.351v2.07c0,0.222,0.182,0.402,0.402,0.402c0.222,0,0.403-0.181,0.403-0.402v-2.07c0.581-0.175,1.006-0.715,1.006-1.351C15.635,9.163,15.21,8.624,14.629,8.448 M14.226,10.402c-0.331,0-0.604-0.272-0.604-0.604c0-0.332,0.272-0.604,0.604-0.604c0.332,0,0.604,0.272,0.604,0.604C14.83,10.13,14.558,10.402,14.226,10.402 M17.647,3.962H2.353c-0.221,0-0.402,0.181-0.402,0.402v11.27c0,0.222,0.181,0.402,0.402,0.402h15.295c0.222,0,0.402-0.181,0.402-0.402V4.365C18.05,4.144,17.869,3.962,17.647,3.962 M17.245,15.232H2.755V4.768h14.49V15.232z"
+               
+                />
+              </svg>
+              <p class="text-base  leading-4 border-b border-transparent focus:border-white">Generate</p>
+            </button>
+            <button onclick="window.location.href='/decks'" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path d="M17.927,5.828h-4.41l-1.929-1.961c-0.078-0.079-0.186-0.125-0.297-0.125H4.159c-0.229,0-0.417,0.188-0.417,0.417v1.669H2.073c-0.229,0-0.417,0.188-0.417,0.417v9.596c0,0.229,0.188,0.417,0.417,0.417h15.854c0.229,0,0.417-0.188,0.417-0.417V6.245C18.344,6.016,18.156,5.828,17.927,5.828 M4.577,4.577h6.539l1.231,1.251h-7.77V4.577z M17.51,15.424H2.491V6.663H17.51V15.424z"
+                
+                />
+              </svg>
+  
+              <p class="text-base leading-4 border-b border-transparent    focus:border-white">Decks</p>
+            </button>
+            <button onclick="window.location.href='/study'" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"
+                
+                />
+              </svg>
+              <p class="text-base leading-4 border-b border-transparent    focus:border-white">Study</p>
+            </button>
+            <div id="dropdown" style="width: 100%;">
+              <button id="tutorials" onclick="toggleDropdown()" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+                <svg class="svg-icon" viewBox="0 0 20 20">
+                  <path d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"></path>
+                </svg>
+                <p class="text-base leading-4 border-b border-transparent focus:border-white">Tutorials</p>
+                <svg id="dropdown-icon" class="svg-icon" style="width: 16px; height: 24px;" viewBox="0 0 20 20" transform="rotate(90)">
+                  <path fill="none" d="M11.611,10.049l-4.76-4.873c-0.303-0.31-0.297-0.804,0.012-1.105c0.309-0.304,0.803-0.293,1.105,0.012l5.306,5.433c0.304,0.31,0.296,0.805-0.012,1.105L7.83,15.928c-0.152,0.148-0.35,0.223-0.547,0.223c-0.203,0-0.406-0.08-0.559-0.236c-0.303-0.309-0.295-0.803,0.012-1.104L11.611,10.049z"></path>
+                </svg>
+              </button>          
+              <div id="subButtons" class="sub-buttons show">
+                <button id="subbutton1" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+                  <p class="text-white font-semibold  leading-4 border-b border-transparent focus:border-white">Generate from files</p>
+                </button>
+                <button id="subbutton2" onclick="window.location.href='/export-to-quizlet'" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+                  <p class="text-base leading-4 border-b border-transparent focus:border-white">Export to Quizlet</p>
+                </button>
+                <button id="subbutton3" onclick="window.location.href='/edit-questions'" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+                  <p class="text-base leading-4 border-b border-transparent focus:border-white">Edit questions</p>
+                </button>
+                <button id="subbutton4" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+                  <a href="mailto:admin@flashly.com" class="text-base leading-4 border-b border-transparent focus:border-white">Contact us</a>
+                </button>
+              </div>
+            </div>
+            
+            </div>
+            
+          </div>
+          
+          <div class="absolute bottom-2">
+            <div class="flex justify-center">
+              <div class="shadow mt-3 w-10/12 p-4 bg-indigo-800 flex justify-center items-start flex-col rounded"  id="freetrial">
+                <p class="text-base leading-none text-center text-white">Free Trial</p>
+              <p id="deckCountText" class="mt-3 text-xs leading-4 text-indigo-200">You've created 2/3 free decks. Upgrade to keep studying!</p>
+              <div class="flex justify-end items-end text-right w-full mt-2.5">
+                <p id="deckCountFraction" class="text-base leading-4 text-white">2/3</p>
+              </div>
+              <div id="deckProgressBar" class="flex justify-start w-full items-start mt-2.5">
+                <div class="w-8/12 h-0.5 bg-white rounded-full"></div>
+                <div class="w-4/12 h-0.5 bg-indigo-500 rounded-full"></div>
+              </div>
+            </div></div>
+            
+          <div class="mt-4 flex justify-center flex-col px-6 w-full">
+            <button onclick="window.location.href='/billing'" class="focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center space-x-6 w-full">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path 
+                d="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
+              />
+              </svg>
+              <p class="text-base leading-4 border-b border-transparent    focus:border-white">Upgrade</p>
+            </button>
+            <button class="focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center space-x-6 w-full">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                 <path d="M17.498,11.697c-0.453-0.453-0.704-1.055-0.704-1.697c0-0.642,0.251-1.244,0.704-1.697c0.069-0.071,0.15-0.141,0.257-0.22c0.127-0.097,0.181-0.262,0.137-0.417c-0.164-0.558-0.388-1.093-0.662-1.597c-0.075-0.141-0.231-0.22-0.391-0.199c-0.13,0.02-0.238,0.027-0.336,0.027c-1.325,0-2.401-1.076-2.401-2.4c0-0.099,0.008-0.207,0.027-0.336c0.021-0.158-0.059-0.316-0.199-0.391c-0.503-0.274-1.039-0.498-1.597-0.662c-0.154-0.044-0.32,0.01-0.416,0.137c-0.079,0.106-0.148,0.188-0.22,0.257C11.244,2.956,10.643,3.207,10,3.207c-0.642,0-1.244-0.25-1.697-0.704c-0.071-0.069-0.141-0.15-0.22-0.257C7.987,2.119,7.821,2.065,7.667,2.109C7.109,2.275,6.571,2.497,6.07,2.771C5.929,2.846,5.85,3.004,5.871,3.162c0.02,0.129,0.027,0.237,0.027,0.336c0,1.325-1.076,2.4-2.401,2.4c-0.098,0-0.206-0.007-0.335-0.027C3.001,5.851,2.845,5.929,2.77,6.07C2.496,6.572,2.274,7.109,2.108,7.667c-0.044,0.154,0.01,0.32,0.137,0.417c0.106,0.079,0.187,0.148,0.256,0.22c0.938,0.936,0.938,2.458,0,3.394c-0.069,0.072-0.15,0.141-0.256,0.221c-0.127,0.096-0.181,0.262-0.137,0.416c0.166,0.557,0.388,1.096,0.662,1.596c0.075,0.143,0.231,0.221,0.392,0.199c0.129-0.02,0.237-0.027,0.335-0.027c1.325,0,2.401,1.076,2.401,2.402c0,0.098-0.007,0.205-0.027,0.334C5.85,16.996,5.929,17.154,6.07,17.23c0.501,0.273,1.04,0.496,1.597,0.66c0.154,0.047,0.32-0.008,0.417-0.137c0.079-0.105,0.148-0.186,0.22-0.256c0.454-0.453,1.055-0.703,1.697-0.703c0.643,0,1.244,0.25,1.697,0.703c0.071,0.07,0.141,0.15,0.22,0.256c0.073,0.098,0.188,0.152,0.307,0.152c0.036,0,0.073-0.004,0.109-0.016c0.558-0.164,1.096-0.387,1.597-0.66c0.141-0.076,0.22-0.234,0.199-0.393c-0.02-0.129-0.027-0.236-0.027-0.334c0-1.326,1.076-2.402,2.401-2.402c0.098,0,0.206,0.008,0.336,0.027c0.159,0.021,0.315-0.057,0.391-0.199c0.274-0.5,0.496-1.039,0.662-1.596c0.044-0.154-0.01-0.32-0.137-0.416C17.648,11.838,17.567,11.77,17.498,11.697 M16.671,13.334c-0.059-0.002-0.114-0.002-0.168-0.002c-1.749,0-3.173,1.422-3.173,3.172c0,0.053,0.002,0.109,0.004,0.166c-0.312,0.158-0.64,0.295-0.976,0.406c-0.039-0.045-0.077-0.086-0.115-0.123c-0.601-0.6-1.396-0.93-2.243-0.93s-1.643,0.33-2.243,0.93c-0.039,0.037-0.077,0.078-0.116,0.123c-0.336-0.111-0.664-0.248-0.976-0.406c0.002-0.057,0.004-0.113,0.004-0.166c0-1.75-1.423-3.172-3.172-3.172c-0.054,0-0.11,0-0.168,0.002c-0.158-0.312-0.293-0.639-0.405-0.975c0.044-0.039,0.085-0.078,0.124-0.115c1.236-1.236,1.236-3.25,0-4.486C3.009,7.719,2.969,7.68,2.924,7.642c0.112-0.336,0.247-0.664,0.405-0.976C3.387,6.668,3.443,6.67,3.497,6.67c1.75,0,3.172-1.423,3.172-3.172c0-0.054-0.002-0.11-0.004-0.168c0.312-0.158,0.64-0.293,0.976-0.405C7.68,2.969,7.719,3.01,7.757,3.048c0.6,0.6,1.396,0.93,2.243,0.93s1.643-0.33,2.243-0.93c0.038-0.039,0.076-0.079,0.115-0.123c0.336,0.112,0.663,0.247,0.976,0.405c-0.002,0.058-0.004,0.114-0.004,0.168c0,1.749,1.424,3.172,3.173,3.172c0.054,0,0.109-0.002,0.168-0.004c0.158,0.312,0.293,0.64,0.405,0.976c-0.045,0.038-0.086,0.077-0.124,0.116c-0.6,0.6-0.93,1.396-0.93,2.242c0,0.847,0.33,1.645,0.93,2.244c0.038,0.037,0.079,0.076,0.124,0.115C16.964,12.695,16.829,13.021,16.671,13.334 M10,5.417c-2.528,0-4.584,2.056-4.584,4.583c0,2.529,2.056,4.584,4.584,4.584s4.584-2.055,4.584-4.584C14.584,7.472,12.528,5.417,10,5.417 M10,13.812c-2.102,0-3.812-1.709-3.812-3.812c0-2.102,1.71-3.812,3.812-3.812c2.102,0,3.812,1.71,3.812,3.812C13.812,12.104,12.102,13.812,10,13.812"
+                />
+              </svg>
+  
+              <p class="text-base leading-4 border-b border-transparent    focus:border-white">Settings</p>
+            </button>
+            <button id="logout-btn" class="focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full">
+              <svg class="svg-icon" viewBox="0 0 20 20">
+                <path d="M11.739,13.962c-0.087,0.086-0.199,0.131-0.312,0.131c-0.112,0-0.226-0.045-0.312-0.131l-3.738-3.736c-0.173-0.173-0.173-0.454,0-0.626l3.559-3.562c0.173-0.175,0.454-0.173,0.626,0c0.173,0.172,0.173,0.451,0,0.624l-3.248,3.25l3.425,3.426C11.911,13.511,11.911,13.789,11.739,13.962 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.148,3.374,7.521,7.521,7.521C14.147,17.521,17.521,14.148,17.521,10"></path>
+              </svg>
+              <p class="text-base leading-4 border-b border-transparent    focus:border-white">Logout</p>
+            </button>
+            
+          </div>
+        </div>
+      </div>
+      </div>
+    
+    
+    
+        <!-- Main Content -->
+        <div class="flex-1 ml-64">
+          
+          <div class="w-full h-screen flex justify-center">
+            <iframe src="https://scribehow.com/embed/How_to_delete_a_deck_and_create_a_new_one__ap1unFSFSmWTXNgBXa7noQ?as=scrollable&skipIntro=true" width="100%" height="100%" allowfullscreen frameborder="0"></iframe>
+            <script>
+function toggleDropdown() {
+  var subButtons = document.getElementById("subButtons");
+  var dropdownIcon = document.getElementById("dropdown-icon");
+
+  subButtons.classList.toggle("show");
+  dropdownIcon.style.transform = subButtons.classList.contains("show") ? "rotate(-90deg)" : "rotate(90deg)";
+}
+
+
+</script>
+</body>

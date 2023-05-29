@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/img/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashly | Study with AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+<script src="https://unpkg.com/typewriter-effect@2.17.0/dist/core.js"></script>
+<style>.flashcard {
+    perspective: 1000px;
+  }
+
+  .flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 24rem;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flashcard:hover .flashcard-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flashcard-front,
+  .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flashcard-back {
+    transform: rotateY(180deg);
+  }</style>
+</head>
+<body class="bg-gray-100">
+    <div id="header-container">
+    <header class="">
+        <nav class="z-10 w-full absolute"><div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
+            <div class="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative">
+                <img src="/img/LogoLong.png" href="/" class="w-1/12 flex-shrink-0 ob">
+                <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav" class="hidden peer">
+                <div class="relative z-20 w-full flex justify-between lg:w-max md:px-0">
+                    <div class="relative flex items-center lg:hidden max-h-10">
+                        <label role="button" for="toggle_nav" aria-label="humburger" id="hamburger" class="relative  p-6 -mr-6">
+                            <div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300"></div>
+                            <div aria-hidden="true" id="line2" class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300"></div>
+                        </label>
+                    </div>
+                </div>
+                <div aria-hidden="true" class="fixed z-10 inset-0 h-screen w-screen bg-white/70 backdrop-blur-2xl origin-bottom scale-y-0 transition duration-500 peer-checked:origin-top peer-checked:scale-y-100 lg:hidden dark:bg-gray-900/70"></div>
+                <div class="flex-col z-20 flex-wrap gap-6 p-8 rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 justify-end w-full invisible opacity-0 translate-y-1  absolute top-full left-0 transition-all duration-300 scale-95 origin-top 
+                            lg:relative lg:scale-100 lg:peer-checked:translate-y-0 lg:translate-y-0 lg:flex lg:flex-row lg:items-center lg:gap-0 lg:p-0 lg:bg-transparent lg:w-7/12 lg:visible lg:opacity-100 lg:border-none
+                            peer-checked:scale-100 peer-checked:opacity-100 peer-checked:visible lg:shadow-none 
+                            dark:shadow-none dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0">
+                        <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0">
+                            <li>
+                                <button onclick="window.scrollTo({
+                                    top:800,
+                                    behavior: 'smooth',
+                                })" class="block md:px-4 transition tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 hover:text-primary">
+                                    <span>The Solution</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button onclick="window.scrollTo({
+                                    top:1300,
+                                    behavior: 'smooth',
+                                })" class="block md:px-4 transition tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 hover:text-primary">
+                                    <span>Features</span>
+                            </button>
+                            </li>
+                            <li>
+                                <button onclick="window.scrollTo({
+                                    top:1900,
+                                    behavior: 'smooth',
+                                })" class="block md:px-4 transition tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 hover:text-primary">
+                                    <span>How it Works</span>
+                            </button>
+                            </li>
+                            <li>
+                                <button onclick="window.scrollTo({
+                                    top:2625,
+                                    behavior: 'smooth',
+                                })" class="block md:px-4 transition tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 hover:text-primary">
+                                    <span>Testimonials</span>
+                            </button>
+                            </li>
+                            <li>
+                                <a href="login" class="block md:px-4 transition hover:text-primary">
+                                    <span>Log in</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-12 lg:mt-0">
+                        <a
+                            href="signup"
+                            class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full rounded-full bg-indigo-700 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
+                            >
+                            <span class="relative text-sm font-semibold text-white"
+                                >Sign up for free</span
+                            >
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div></nav></header></div>
+    <style>
+        #toggle_nav:checked ~ div #hamburger #line {
+  transform: rotate(45deg) translateY(1.5rem);
+}
+
+#toggle_nav:checked ~ div #hamburger #line2 {
+  transform: rotate(-45deg) translateY(-1rem);
+}
+
+    </style>
+    <section class="pt-20 bg-gray-100">
+        
+        <div class="px-12 mx-auto max-w-7xl">
+            <div class="w-full pt-10 mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
+                <h1 class="mb-8 text-4xl font-extrabold leading-none tracking-normal text-gray-900 md:text-6xl md:tracking-tight">
+                    <span>Create</span> <span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-indigo-300 to-indigo-800 lg:inline">AI generated flashcards</span> <span>about anything, instantly.</span>
+                </h1>
+                <p class="px-0 mb-8 text-lg text-gray-600 md:text-xl lg:px-24">
+                    Input text, PDFs, PowerPoints, books, images, or documents, and create an optimized deck of flashcards in moments. Study them right here or export them to your favorite flashcard tool. Simple and easy, how studying should be.
+                </p>
+                <div class="mb-4 space-x-0 md:space-x-2 md:mb-8">
+                    <a href="signup" class="inline-flex items-center justify-center w-full px-6 py-3 mb-2 text-lg text-white bg-indigo-700 hover:bg-indigo-800 rounded-2xl sm:w-auto sm:mb-0">
+                        Get Started
+                        <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+
+                </div>
+            </div>
+            <div class="justify-center flex">
+                <img src="/img/mockup.png" style="width: 80%">
+            </div>
+                        
+                  
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#4338ca" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,192C480,192,600,128,720,117.3C840,107,960,149,1080,154.7C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+            <text x="50%" y="90%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="20" letter-spacing="2" style="z-index: -1;" class="text-gray-900 dark:text-white font-normal text-2xl md:text-3xl xl:text-4xl">As students, we understand</text>
+          </svg> 
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#4338ca" fill-opacity="1" d="M0,32L40,53.3C80,75,160,117,240,160C320,203,400,245,480,240C560,235,640,181,720,160C800,139,880,149,960,133.3C1040,117,1120,75,1200,64C1280,53,1360,75,1400,85.3L1440,96L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path>
+            <text x="50%" y="5%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="40" letter-spacing="2" style="z-index: -1;" class="text-white mx-1 font-bold relative inline-block stroke-current">the struggle.</text>
+          </svg>
+    </section>
+    <section id="solution">
+        <div class="bg-gray-100 pb-16">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+              <dl class="grid grid-cols-1 gap-y-16 gap-x-8 text-center lg:grid-cols-3">
+                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                  <dt class="text-base leading-7 text-gray-600">of college students experience 'tremendous stress' due to studying expectations</dt>
+                  <dd class="order-first text-3xl font-bold tracking-tight text-indigo-700 sm:text-5xl">45%</dd>
+                </div>
+          
+                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                  <dt class="text-base leading-7 text-gray-600">of college students say they forgot what their professor lectured about after a week</dt>
+                  <dd class="order-first text-3xl font-bold tracking-tight text-indigo-700 sm:text-5xl">1/3</dd>
+                </div>
+          
+                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                  <dt class="text-base leading-7 text-gray-600">of successful students say flashcards were their preferred method of study</dt>
+                  <dd class="order-first text-3xl font-bold tracking-tight text-indigo-700 sm:text-5xl">73%</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          
+    </section>
+    <section id="features">
+    <div class="flex justify-center">
+        <hr class="w-5/6 my-12 h-0.5 border-t-0 bg-indigo-700 opacity-10 rounded-full dark:opacity-50" />
+      </div>
+      
+    <div class="features bg-gray-100 flex justify-center text-center">
+        <div class="max-w-7xl px-6 md:px-12 xl:px-6 bg-gray-100 py-10 align-items center">
+            <div>
+                
+                
+                <h2 class="my-8 text-xl font-bold text-gray-700 dark:text-white md:text-3xl ">
+                  Flashly is the <span class="text-indigo-700 mx-1 font-bold relative inline-block stroke-current">
+                    AI flashcard generator
+                    <svg class="absolute -bottom-0.5 w-full max-h-1.5" viewBox="0 0 55 5" xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="none">
+                        <path d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002" stroke-width="2"></path>
+                    </svg>
+                </span> students wish they knew about sooner.
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300">You've got an exam in a week, and this time you don't want to spend 8 hours cramming. Flashly is here for you.</p>
+                
+              </div>
+              <div
+                class="mt-16 grid divide-x divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-3xl border border-gray-100 text-gray-600 dark:border-gray-700 sm:grid-cols-2 lg:grid-cols-4 lg:divide-y-0 xl:grid-cols-4"
+              >
+                <div class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
+                  <div class="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-indigo-700 dark:group-hover:bg-gray-800">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png"
+                      class="w-12 mx-auto"
+                      width="512"
+                      height="512"
+                      alt="burger illustration"
+                    />
+          
+                    <div class="space-y-2">
+                      <h5
+                        class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-white"
+                      >
+                        Free Online Studying
+                      </h5>
+                      <p class="text-gray-600 transition group-hover:text-white dark:text-gray-300">
+                        Flashly uses a state of the art spaced repetition algorithm, so you can study right here on our website without worrying about paying for other flashcard tools.
+                      </p>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
+                  <div class="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-indigo-700 dark:group-hover:bg-gray-800">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/4341/4341134.png"
+                      class="w-12 mx-auto"
+                      width="512"
+                      height="512"
+                      alt="burger illustration"
+                    />
+          
+                    <div class="space-y-2">
+                      <h5
+                        class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-white"
+                      >
+                        Not Just Flashcards
+                      </h5>
+                      <p class="text-gray-600 transition group-hover:text-white dark:text-gray-300">
+                        If flashcards aren't your thing, Flashly can generate multiple choice, fill in the blank, and other question formats to maximize your memorization capacity.
+                      </p>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
+                  <div class="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-indigo-700 dark:group-hover:bg-gray-800">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/4341/4341160.png"
+                      class="w-12 mx-auto"
+                      width="512"
+                      height="512"
+                      alt="burger illustration"
+                    />
+          
+                    <div class="space-y-2">
+                      <h5
+                        class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-white"
+                      >
+                        Export Decks
+                      </h5>
+                      <p class="text-gray-600 transition group-hover:text-white dark:text-gray-300">
+                        If our online studying platform just doesn't do the trick for you, that's okay! You can export your flashcards to Quizlet or Anki as much as you'd like!
+                      </p>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div
+                  class="group relative bg-white dark:bg-gray-900 transition hover:z-[1] hover:shadow-2xl hover:bg-indigo-700 hover:shadow-gray-600"
+                >
+                  <div
+                    class="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-indigo-700 dark:group-hover:bg-gray-800"
+                  >
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png"
+                      class="w-12 mx-auto"
+                      width="512"
+                      height="512"
+                      alt="burger illustration"
+                    />
+          
+                    <div class="space-y-2">
+                      <h5
+                        class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-white"
+                      >
+                        100% Free Trial
+                      </h5>
+                      <p class="text-gray-600 transition group-hover:text-white dark:text-gray-300">
+                        Flashly is entirely free for up to three decks. Upgrade to Student ($4.99/month) or Pro ($9.99/month) for advanced features and infinite decks.
+                      </p>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section class="pb-16">
+     
+    <section id="how-it-works" class="mx-auto container bg-gray-100 dark:bg-gray-900 py-16">
+        <div class="px-4 lg:px-0">
+            <div role="contentinfo" class="flex items-center flex-col px-4">
+                <h1 class="text-gray-900 dark:text-white font-bold text-2xl md:text-3xl xl:text-4xl">Here's <span class="bg-indigo-700 text-white px-4 py-2 rounded-lg">how it works:</span></h1>
+            </div>
+        </div>
+    </section>
+    <section class="bg-indigo-700 py-12 mt-12">
+
+        <div tabindex="0" aria-label="group of cards" class="focus:outline-none px-4 lg:px-0">
+            <div class="mx-auto container flex flex-wrap px-2 lg:px-24">
+                <div tabindex="0" aria-label="card 1" class="focus:outline-none flex sm:w-full md:w-1/2 lg:border-r md:border-r sm:border-r-0 border-indigo-400 pb-10 lg:pt-10">
+                    <div class=" flex flex-shrink-0 mr-5 text-white">
+                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/indigo_bg_with_divider-svg1.svg" alt="drawer">
+                    </div>
+                    <div class="md:w-9/12 lg:w-9/12">
+                        <h2 tabindex="0" class="focus:outline-none text-lg font-semibold leading-5 text-white">Step 1: Choose text</h2>
+                        <p tabindex="0" class="focus:outline-none text-base text-white leading-normal xl:w-10/12 pt-2">Some examples could be a lecture transcript, book chapter, or textbook article.</p>
+                    </div>
+                </div>
+                <div tabindex="0" aria-label="card 2" class="focus:outline-none flex sm:w-full md:w-1/2 lg:pb-10 lg:pt-10">
+                    <div class=" flex flex-shrink-0 sm:ml-0 md:ml-10 lg:ml-10 mr-5 text-white">
+                       <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/indigo_bg_with_divider-svg2.svg" alt="check">
+                    </div>
+                    <div class="md:w-9/12 lg:w-9/12 ">
+                        <h2 tabindex="0" class="focus:outline-none text-lg font-semibold leading-5 text-white">Step 2: Generate deck</h2>
+                        <p tabindex="0" class="focus:outline-none text-base text-white leading-normal xl:w-10/12 pt-2">Once you enter your text, hit generate and the flashcards are created in seconds.</p>
+                    </div>
+                </div>
+                <div tabindex="0" aria-label="card 3" class="focus:outline-none flex sm:w-full md:w-1/2 lg:border-t md:border-t sm:border-t-0 lg:border-r md:border-r sm:border-r-0 border-indigo-400 pt-10 lg:pb-20">
+                    <div class=" flex flex-shrink-0 mr-5 text-white">
+                      <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/indigo_bg_with_divider-svg3.svg" alt="html-tag">
+                    </div>
+                    <div class="md:w-9/12 lg:w-9/12 ">
+                        <h2 tabindex="0" class="focus:outline-none text-lg font-semibold leading-5 text-white">Step 3: Modify and import</h2>
+                        <p tabindex="0" class="focus:outline-none text-base text-white leading-normal xl:w-10/12 pt-2">Make any changes you'd like, then import the deck seamlessly to your account.</p>
+                    </div>
+                </div>
+                <div tabindex="0" aria-label="card 4" class="focus:outline-none flex sm:w-full md:w-1/2 lg:border-t md:border-t sm:border-t-0 border-indigo-400 pt-10 lg:pb-20">
+                    <div class=" flex flex-shrink-0 sm:ml-0 md:ml-10 lg:ml-10 mr-5 text-white">
+                       <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/indigo_bg_with_divider-svg4.svg" alt="display">
+                    </div>
+                    <div class="md:w-9/12 lg:w-9/12 ">
+                        <h2 tabindex="0" class="focus:outline-none text-lg font-semibold leading-5 text-white">Step 4: Start studying</h2>
+                        <p tabindex="0" class="focus:outline-none text-base text-white leading-normal xl:w-10/12 pt-2">Master your deck right on our website using an advanced spatial repetition algorithm.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials" class="pt-12">
+        <div class="flex justify-center">
+            <h2 class="mt-8 text-xl font-bold text-gray-700 dark:text-white md:text-3xl">
+                Trusted by students <span class="text-indigo-700 mx-1 font-bold relative inline-block stroke-current">
+                  like you
+                  <svg class="absolute -bottom-0.5 w-full max-h-1.5" viewBox="0 0 55 5" xmlns="http://www.w3.org/2000/svg"
+                      preserveAspectRatio="none">
+                      <path d="M0.652466 4.00002C15.8925 2.66668 48.0351 0.400018 54.6853 2.00002" stroke-width="2"></path>
+                  </svg>
+              </span>, worldwide.
+              </h2>
+        </div>
+        <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:px-20 px-10 py-20 gap-6">
+            <div>
+                <div class="group w-full bg-white dark:bg-gray-800 rounded-3xl  relative flex flex-col items-center hover:bg-indigo-700 cursor-pointer shadow-md md:p-12 p-6">
+                    <div class="text-gray-600 dark:text-gray-200   group-hover:text-white flex flex-col items-center">
+                        <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path d="M25.2578 14.3309H19.2969C19.3988 9.55819 20.6309 9.01642 22.1785 8.86178L22.7753 8.78051V3.53242L22.0874 3.57292C20.0666 3.69783 17.8323 4.09805 16.3417 6.11965C15.035 7.89183 14.459 10.7871 14.459 15.2316V23.4673H25.2578V14.3309Z" fill="currentColor" />
+                                <path d="M11.48 23.4673V14.3309H5.59859C5.70049 9.55819 6.89283 9.01642 8.44042 8.86178L8.99749 8.78051V3.53242L8.34931 3.57292C6.32844 3.69783 4.07421 4.09805 2.5836 6.11965C1.27707 7.89183 0.681147 10.7871 0.681147 15.2316V23.4673H11.48Z" fill="currentColor" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="24.5767" height="27" fill="white" transform="translate(25.2578 27) rotate(-180)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="xl:w-80 text-base leading-normal text-center mt-4">Flashly is such a breakthrough in my studying routine. I'm a huge flashcard fan but traditional tools were very inefficient because I had to make them myself. Now that the flashcards are instantly generated, I can spend my time studying instead of 'getting ready' to study. The premium features like infinite word limits and uploading images are also lifesavers!</p>
+                    </div>
+                    <div class="text-white dark:text-gray-800 group-hover:text-indigo-700 absolute bottom-0 -mb-6">
+                        <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g filter="url(#filter0_dd)">
+                                <path d="M17 19L28.2583 3.25H5.74167L17 19Z" fill="currentColor" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_dd" x="0.741699" y="0.25" width="32.5167" height="27.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                    <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow" />
+                                    <feOffset dy="4" />
+                                    <feGaussianBlur stdDeviation="3" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                    <feOffset dy="2" />
+                                    <feGaussianBlur stdDeviation="2.5" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                    <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center mt-10">
+                    <img src="https://i.ibb.co/ZgF5Zzz/avatar-1.png" alt="profile pictre" class="w-12 h-12" />
+                    <p class="text-base font-semibold leading-4 my-2 text-gray-800 dark:text-white  ">Tom Koch</p>
+                    <p class="font-bold leading-4 text-center text-indigo-700 dark:text-gray-200  ">Developer</p>
+                </div>
+            </div>
+            <div>
+                <div class="group w-full bg-white dark:bg-gray-800 rounded-3xl   relative flex flex-col items-center hover:bg-indigo-700 cursor-pointer shadow-md md:p-12 p-6">
+                    <div class="text-gray-600 dark:text-gray-200   group-hover:text-white flex flex-col items-center">
+                        <svg class="" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path d="M25.2578 14.3309H19.2969C19.3988 9.55819 20.6309 9.01642 22.1785 8.86178L22.7753 8.78051V3.53242L22.0874 3.57292C20.0666 3.69783 17.8323 4.09805 16.3417 6.11965C15.035 7.89183 14.459 10.7871 14.459 15.2316V23.4673H25.2578V14.3309Z" fill="currentColor" />
+                                <path d="M11.48 23.4673V14.3309H5.59859C5.70049 9.55819 6.89283 9.01642 8.44042 8.86178L8.99749 8.78051V3.53242L8.34931 3.57292C6.32844 3.69783 4.07421 4.09805 2.5836 6.11965C1.27707 7.89183 0.681147 10.7871 0.681147 15.2316V23.4673H11.48Z" fill="currentColor" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="24.5767" height="27" fill="white" transform="translate(25.2578 27) rotate(-180)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="xl:w-80 text-base leading-normal text-center mt-4">My major has me studying for hours every day, and while some of my lesson content is available on other flashcard websites, the majority of it changes every year and isn't available. I use Flashly to instantly generate perfect flashcards, and it cuts down on my daily studying so much.</p>
+                    </div>
+                    <div class="text-white dark:text-gray-800 group-hover:text-indigo-700 absolute bottom-0 -mb-6">
+                        <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g filter="url(#filter0_dd)">
+                                <path d="M17 19L28.2583 3.25H5.74167L17 19Z" fill="currentColor" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_dd" x="0.741699" y="0.25" width="32.5167" height="27.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                    <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow" />
+                                    <feOffset dy="4" />
+                                    <feGaussianBlur stdDeviation="3" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                    <feOffset dy="2" />
+                                    <feGaussianBlur stdDeviation="2.5" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                    <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center mt-10">
+                    <img src="https://i.ibb.co/8BLjmqz/avatar-2.png" alt="profile pictre" class="w-12 h-12" />
+                    <p class="text-base font-semibold leading-4 my-2 text-gray-800 dark:text-white  ">Alan Max</p>
+                    <p class="font-bold leading-4 text-center text-indigo-700 dark:text-gray-200  ">Designer</p>
+                </div>
+            </div>
+            <div>
+                <div class="group w-full bg-white dark:bg-gray-800 rounded-3xl   relative flex flex-col items-center hover:bg-indigo-700 cursor-pointer shadow-md md:p-12 p-6">
+                    <div class="text-gray-600 dark:text-gray-200   group-hover:text-white flex flex-col items-center">
+                        <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path d="M25.2578 14.3309H19.2969C19.3988 9.55819 20.6309 9.01642 22.1785 8.86178L22.7753 8.78051V3.53242L22.0874 3.57292C20.0666 3.69783 17.8323 4.09805 16.3417 6.11965C15.035 7.89183 14.459 10.7871 14.459 15.2316V23.4673H25.2578V14.3309Z" fill="currentColor" />
+                                <path d="M11.48 23.4673V14.3309H5.59859C5.70049 9.55819 6.89283 9.01642 8.44042 8.86178L8.99749 8.78051V3.53242L8.34931 3.57292C6.32844 3.69783 4.07421 4.09805 2.5836 6.11965C1.27707 7.89183 0.681147 10.7871 0.681147 15.2316V23.4673H11.48Z" fill="currentColor" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="24.5767" height="27" fill="white" transform="translate(25.2578 27) rotate(-180)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="xl:w-80 text-base leading-normal text-center mt-4">Exam week is definitely the worst part of college, and I always didn't know where to start each time. Flashly makes it so easy; I just paste in the textbook chapters I need to study and within seconds I've got almost a hundred flashcards with all the key points and information I need to ace my exam. Definitely the most helpful studying tool I've ever used!</p>
+                    </div>
+                    <div class="text-white dark:text-gray-800 group-hover:text-indigo-700 absolute bottom-0 -mb-6">
+                        <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g filter="url(#filter0_dd)">
+                                <path d="M17 19L28.2583 3.25H5.74167L17 19Z" fill="currentColor" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_dd" x="0.741699" y="0.25" width="32.5167" height="27.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                    <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect1_dropShadow" />
+                                    <feOffset dy="4" />
+                                    <feGaussianBlur stdDeviation="3" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                                    <feOffset dy="2" />
+                                    <feGaussianBlur stdDeviation="2.5" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                    <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center mt-10">
+                    <img src="https://i.ibb.co/y0KCX7p/avatar-3.png" alt="profile pictre" class="w-12 h-12" />
+                    <p class="text-base font-semibold leading-4 my-2 text-gray-800 dark:text-white  ">Kera Joo</p>
+                    <p class="font-bold leading-4 text-center text-indigo-700 dark:text-gray-200">Support</p>
+                </div>
+            </div>
+          
+        </div>
+    
+    </section>
+
+        <section class="w-screen px-4 bg-gradient-to-r from-indigo-400 to-indigo-800 dark:bg-gray-800 sm:py-16 sm:px-6 lg:px-8 lg:py-20">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold leading-9 text-white sm:text-4xl sm:leading-10">
+                     Create a free account now
+                </h2>
+                <h3 class="mt-3 font-medium leading-7 text-white sm:mt-4">
+                    and see how Flashly is revolutionizing studytime.                </h3>
+            </div>
+            
+            <div class="flex p-4 mx-auto mt-4 w-52">
+                <button onclick="window.location.href='/signup'" class="w-full px-6 py-4 text-base font-semibold text-center text-indigo-700 transition duration-200 ease-in shadow-md bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+                    Sign up now
+                </button>
+            </div>
+        </section>
+        
+        <footer class="bg-gray-100 rounded-lg  dark:bg-gray-900 m-4">
+            <div class="w-full container mx-auto p-4 md:px-6 md:py-8">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <a href="https://tryflashly.com/" class="flex items-center mb-4 sm:mb-0">
+                        <img src="/img/LogoLong.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    </a>
+                    <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                        <li>
+                            <a href="/" class="mr-4 hover:underline md:mr-6 ">Home</a>
+                        </li>
+                        <li>
+                            <a href="/privacy" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="/terms-of-service" class="mr-4 hover:underline md:mr-6 ">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a href="mailto:help@tryflashly.com" class="hover:underline">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">Flashly</a>. All Rights Reserved.</span>
+            </div>
+        </footer>
+
+
+          
+<script>
+
+</script>
+<script src="main.js"></script>
+</body>
